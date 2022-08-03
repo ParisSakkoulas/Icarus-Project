@@ -1,0 +1,33 @@
+<% layout("layouts/boilerplate") %>
+
+    <h1 class="text-center">Επεξεργασία Μαθήματος</h1>
+    <form class="row g-3 validated-form" action="/subjects/<%=subject.Subject_id%>?_method=PUT" method="POST"
+        novalidate>
+
+        <div class="col-12">
+            <label for="Name" class="form-label">Όνομα</label>
+            <input type="text" class="form-control" id="Name" name="Name" value="<%=subject.Name%>" required>
+            <div class="valid-feedback">Σωστό!</div>
+        </div>
+
+        <div class="col-12">
+            <label for="Description" class="form-label">Περιγραφή</label>
+            <textarea class="form-control" type="text" id="Description" name="Description"
+                style="height: 150px;"><%=subject.Description%></textarea>
+            <div class="valid-feedback">Σωστό!</div>
+        </div>
+
+        <div class="col-12">
+            <label for="Prerequisite_Subj" class="form-label">Προαπαιτούμενα μαθήματα</label>
+            <input type="text" class="form-control" id="Prerequisite_Subj" name="Prerequisite_Subj"
+                value="<%=subject.Prerequisite_Subj%>">
+            <div class="valid-feedback">Σωστό!</div>
+        </div>
+
+        <div class="col-12 mb-3">
+            <button class=" btn btn-info">Ενημέρωση</button>
+            <a class="card-link btn btn-secondary" href="/subjects/<%=subject.Id%>">Πίσω</a>
+        </div>
+
+
+    </form>

@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate')%>
+
+    <h1 class="text-center mb-3">Ενημέρωση Δήλωσης Μαθημάτων</h1>
+
+    <form action="/editNewStatement" method="POST" name="myform" id="myform">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Κωδικός</th>
+                    <th scope="col">Τίτλος</th>
+                    <th scope="col">Εξάμηνο</th>
+                    <th scope="col">Δήλωση</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% for (let subject of subjects){%>
+                    <% for(let teach of teachings){ %>
+                        <% if(subject.Αssignment===1) {%>
+                            <% if(teach.Subject_id===subject.Subject_id) {%> %>
+                                <tr>
+                                    <th scope="row">
+                                    </th>
+
+                                    <td>
+                                        <%= subject.Subject_id %>
+
+                                    </td>
+                                    <td>
+                                        <%= subject.Name %>
+                                    </td>
+
+                                    <td>
+                                        <%= teach.Semester%>
+                                    </td>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox" name="Subject_id"
+                                            id="<%= subject.Name %>" value="<%=subject.Subject_id%>">
+
+                                    </td>
+                                </tr>
+                                <% } %>
+                                    <% } %>
+                                        <% } %>
+                                            <% } %>
+
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-info">Ενημέρωση</button>
+        <a class="card-link btn btn-success" href="/statemenFinalization">Οριστική υποβολή</a>
+        <a class="card-link btn btn-secondary" href="/subjects">Πίσω</a>
+    </form>

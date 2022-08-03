@@ -1,0 +1,128 @@
+<% layout("layouts/boilerplate") %>
+
+    <h1 class="text-center">Ανάθεση Μαθήματος</h1>
+
+    <div class="card text-dark bg-light mb-5">
+        <div class="card-header">
+            <h4>
+                <%=subject.Name%>
+            </h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Περιγραφή</h5>
+            <p class="card-text">
+                <%=subject.Description%>
+            </p>
+            <h5 class="card-title">Κωδικός Μαθήματος</h5>
+            <p class="card-text">
+                <%=subject.Subject_id%>
+            </p>
+            <h5 class="card-title">Προαπαιτούμενα Μαθήματα</h5>
+            <p class="card-text">
+                <%= subject.Prerequisite_Subj%>
+            </p>
+        </div>
+
+    </div>
+
+    <form class="row g-3 validated-form" action="/subjects/assignSubject " method="POST" novalidate>
+
+        <div class="col-12">
+            <label for="Subject_id" class="form-label">Κωδικός Μαθήματος</label>
+            <input type="text" class="form-control" id="Subject_id" name="Subject_id" value="<%=subject.Subject_id%>"
+                readonly>
+        </div>
+        <div class="col-12">
+            <label for="Year" class="form-label">Έτος</label>
+            <input type="text" class="form-control" id="Year" name="Year" placeholder="Έτος διδασκαλίας">
+        </div>
+
+        <div class="col-12">
+            <label for="Semester" class="form-label">Εξάμηνο</label>
+            <input type="text" class="form-control" id="Semester" name="Semester" placeholder="Εξάμηνο διδασκαλίας">
+        </div>
+
+        <label class="form-label" for="Professor">Διδάσκων</label>
+        <select id="Professor" name="Professor" class="form-select mb-3" aria-label="Default select example" required>
+            <option selected>Επιλογή Διδάσκων</option>
+            <% for (let teacher of teachers){%>
+                <option value="<%=teacher.Teacher_Name%>">
+                    <%=teacher.Teacher_Name%>
+                </option>
+                <%}%>
+        </select>
+
+        <label class="form-label">Επιλογή Θεωρία - Εργαστήριο</label>
+        <select id="Role" name="Restriction" class="form-select" aria-label="Default select example" required>
+            <option selected>Επιλογή</option>
+            <option value="theory">Θεωρία</option>
+            <option value="theory_lab">Θεωρία και Εργαστήριο</option>
+        </select>
+
+        <div class="col-12" id="theoryID">
+            <label for="Theory_Weight" class="form-label">Βάρος Θεωρίας</label>
+            <input type="text" class="form-control" id="Theory_Weight" name="Theory_Weight" placeholder="Βάρος Θεωρίας">
+        </div>
+
+        <div class="col-12" id="labID">
+            <label for="Lab_Weight" class="form-label">Βάρος Εργαστηρίου</label>
+            <input type="text" class="form-control" id="Lab_Weight" name="Lab_Weight" placeholder="Βάρος Εργαστηρίου">
+        </div>
+
+        <div class="col-12" id="theoryDesrID">
+            <label for="Theory_Restriction" class="form-label">Περιορισμός Θεωρία</label>
+            <input type="text" class="form-control" id="Theory_Restriction" name="Theory_Restriction"
+                placeholder="Περιορισμός Θεωρία">
+        </div>
+
+        <div class="col-12" id="labDescrID">
+            <label for="Lab_Restriction" class="form-label">Περιορισμός Εργαστηρίου</label>
+            <input type="text" class="form-control" id="Lab_Restriction" name="Lab_Restriction"
+                placeholder="Περιορισμός Εργαστηρίου">
+        </div>
+
+        <div class="col-12 mb-3">
+            <button class=" btn btn-info">Ανάθεση</button>
+            <a class="card-link btn btn-secondary" href="/subjects/<%=subject.Id%>">Πίσω</a>
+        </div>
+
+
+    </form>
+
+    <script>
+        $(function () {
+            $('#theoryID').hide();
+            $('#labID').hide();
+            $('#labDescrID').hide();
+            $('#theoryDesrID').hide();
+            $('#Role').change(function () {
+                if ($('#Role').val() == 'theory') {
+
+                    //εμφάνιση και απόκρυψη div
+                    $('#theoryID').show();
+                    $('#theoryDesrID').show();
+                    $('#labID').hide();
+                    $('#labID').val(null);
+                    $('#labDescrID').hide();
+
+                }
+                else if ($('#Role').val() == 'theory_lab') {
+                    //εμφάνιση και απόκρυψη div
+
+                    $('#labID').show();
+                    $('#labDescrID').show();
+                    $('#theoryID').show();
+                    $('#theoryDesrID').show();
+
+                }
+                else {
+                    //απόκρυψη σε οποιαδήποτε άλλη περίπτωση
+                    $('#labID').hide();
+                    $('#labDescrID').hide();
+                    $('#theoryID').hide();
+                    $('#theoryDesrID').hide();
+
+                }
+            });
+        });
+    </script>

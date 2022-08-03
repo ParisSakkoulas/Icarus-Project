@@ -1,0 +1,122 @@
+<% layout('layouts/boilerplate')%>
+    <div class="mb-3">
+        <a class="text-decoration-none" href="/subjects" style="color: #395B64;">Πίσω στα Μαθήματα</a>
+    </div>
+
+    <div class="card text-dark bg-light mb-5 border-0 shadow" style="border-radius: 8px;">
+        <div class="card-header">
+            <h4>
+                <%=subject.Name%>
+            </h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Περιγραφή</h5>
+            <p class="card-text">
+                <%=subject.Description%>
+            </p>
+            <h5 class="card-title">Κωδικός Μαθήματος</h5>
+            <p class="card-text">
+                <%=subject.Subject_id%>
+            </p>
+            <h5 class="card-title">Προαπαιτούμενα Μαθήματα</h5>
+            <p class="card-text">
+                <%= subject.Prerequisite_Subj%>
+            </p>
+
+            <%if(teaching){%>
+                <h5 class="card-title">Έτος</h5>
+                <p class="card-text">
+                    <%= teaching.Year%>
+                </p>
+
+                <h5 class="card-title">Εξάμηνο</h5>
+                <p class="card-text">
+                    <%= teaching.Semester%>
+                </p>
+
+                <h5 class="card-title">Καθηγητής</h5>
+                <p class="card-text">
+                    <%= teaching.Professor%>
+                </p>
+
+                <h5 class="card-title">Βάρος Θεωρίας</h5>
+                <p class="card-text">
+                    <%= teaching.Theory_Weight%>
+                </p>
+
+                <h5 class="card-title">Βάρος Εργαστηρίου</h5>
+                <p class="card-text">
+                    <%= teaching.Lab_Weight%>
+                </p>
+
+                <h5 class="card-title">Περιορισμός Θεωρίας</h5>
+                <p class="card-text">
+                    <%= teaching.Theory_Restriction%>
+                </p>
+
+                <h5 class="card-title">Περιορισμός Εργαστηρίου</h5>
+                <p class="card-text">
+                    <%= teaching.Lab_Restriction%>
+                </p>
+                <%}%>
+
+                    <% if(currentUser && currentUser.Role==='Admin' ){%>
+                        <% if(teaching && teaching.Teaching_state==="final" ) {%>
+                            <a class="card-link btn btn-primary"
+                                href="/teachings/getFormForScoresSubjectAdmin/<%=teaching.Teaching_id%> ">Εισαγωγή
+                                Βαθμολογιών</a>
+                            <% } else {%>
+                                <div>
+                                    <a class="card-link btn btn-info"
+                                        href="/subjects/<%=subject.Subject_id%>/edit">Επεξεργασία</a>
+
+                                    <%if(subject.Αssignment===0){%>
+                                        <a class="card-link btn btn-info"
+                                            href="/subjects/<%=subject.Subject_id%>/assignSubject">Ανάθεση
+                                            Μαθήματος</a>
+                                        <%}%>
+
+                                            <%if(subject.Αssignment===1){%>
+                                                <a class="card-link btn btn-info"
+                                                    href=" /subjects/<%=subject.Subject_id%>/assignWeightAdmin">Ανανέωση
+                                                    Τρόπου
+                                                    Βαθμολόγησης</a>
+                                                <%}%>
+
+                                                    <a class="card-link btn btn-danger"
+                                                        href="/subjects/delete/<%=subject.Subject_id%>">Διαγραφή</a>
+                                </div>
+                                <% } %>
+                                    <%}%>
+
+
+                                        <% if(currentUser && currentUser.Role==='DEP_member' ){%>
+                                            <%if(teaching){%>
+                                                <%if(TeacherName && TeacherName===teaching.Professor){%>
+                                                    <% if(teaching && teaching.Teaching_state==="final" ) {%>
+                                                        <a class="card-link btn btn-primary"
+                                                            href="/teachings/getFormForScoresSubject/<%=teaching.Teaching_id%> ">Εισαγωγή
+                                                            Βαθμολογιών</a>
+                                                        <% } else {%>
+
+
+                                                            <div>
+                                                                <a class="card-link btn btn-info"
+                                                                    href="/subjects/<%=subject.Subject_id%>/assignWeight">Εισαγωγή
+                                                                    Τρόπου
+                                                                    Βαθμολόγησης</a>
+                                                            </div>
+                                                            <% } %>
+
+
+
+                                                                <%}%>
+                                                                    <%}%>
+                                                                        <%}%>
+
+        </div>
+
+
+
+
+    </div>

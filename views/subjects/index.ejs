@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate')%>
+
+    <h1 class="text-center mb-3">Όλα τα μαθήματα</h1>
+
+    <% if(currentUser && currentUser.Role==='Admin' ){%>
+        <div class="mb-3">
+            <a href="/subjects/new">Προσθήκη Μαθήματος</a>>
+        </div>
+        <%}%>
+            <% for (let subject of subjects){%>
+                <a id="card" href="/subjects/<%=subject.Subject_id%>" class="card-link text-decoration-none text-dark">
+                    <div class="card shadow p-3 mb-4 bg-white rounded border-0">
+                        <div class="row">
+                            <div class="col-md-14">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= subject.Name %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= subject.Description %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <% }%>
+
+
+
+
+                    <style>
+                        .card:hover {
+
+                            background-color: #E7F6F2 !important;
+                            opacity: 0.9 !important;
+                            transition: 0.3s !important;
+
+
+                        }
+                    </style>

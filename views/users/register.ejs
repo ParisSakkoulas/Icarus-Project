@@ -1,0 +1,177 @@
+<% layout("layouts/boilerplate") %>
+
+
+
+    <h1 class="text-center">Εγγραφή Χρήστη</h1>
+
+    <div class="card shadow mx-auto border-0" style="border-radius: 8px; height: 90%; width: 35%;">
+        <form action="/register" method="POST" novalidate class="validated-form mb-3 p-4">
+
+            <div class="mb-3">
+                <label class="form-label" for="Username">Όνομα Χρήστη</label><i class="fa-solid fa-circle-question p-2"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Το όνομα χρήστη πρέπει να είναι μοναδικό"></i>
+                <input class="form-control w-100" type="text" id="Username" name="Username" required
+                    placeholder="Όνομα χρήστη" minlength="2" maxlength="15" style="border-radius: 12px;">
+                <div class="valid-feedback">Σωστό!</div>
+                <div class="invalid-feedback">Το όνομα χρήστη απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="Password">Κωδικός</label><i class="fa-solid fa-circle-question p-2"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Πρέπει να αποτελείται απο τουλάχιστον 8 χαρακτήρες εκ των οποίων 1 αριθμός, 1 κεφαλαίο γράμμα και 1 πεζό γράμμα"></i>
+                <input class="form-control w-100" type="password" id="Password" name="Password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Πρέπει να αποτελείται απο τουλάχιστον 8 χαρακτήρες εκ των οποίων τουλάχιστον 1 αριθμός, 1 κεφαλαίο γράμμα και 1 πεζό γράμμα αντίστοιχα"
+                    required placeholder="Κωδικός χρήστη" style="border-radius: 12px;">
+                <div class="invalid-feedback">Πρέπει να περιέχει τουλάχιστον έναν αριθμό, ένα κεφαλαίο γράμμα, ένα πεζό
+                    γράμμα και τουλάχιστον 8 ή περισσότερους χαρακτήρες</div>
+                <div class="valid-feedback">Σωστό!</div>
+
+            </div>
+
+            <label class="form-label">Επιλογή ρόλου χρήστη</label>
+            <select id="Role" name="Role" class="form-select mb-3 w-100" aria-label="Default select example" required
+                style="border-radius: 12px;" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Επιλογή ιδιότητας χρήστη">
+                <option selected>Επιλογή Ρόλου</option>
+                <option value="University_Student">Φοιτητής</option>
+                <option value="DEP_member">Διδάσκων</option>
+            </select>
+
+            <!-- divs σε περίπτωση που επιλέξει ρόλο φοιτητή-->
+
+            <div id="student">
+                <div class="mb-3">
+                    <label class="form-label" for="Student_Name">Όνομα</label>
+                    <input class="form-control w-100" type="text" id="Student_Name" name="Student_Name"
+                        placeholder="Όνομα Φοιτητή" required minlength="2" maxlength="15" style="border-radius: 12px;">
+                    <div class="valid-feedback">Σωστό!</div>
+                    <div class="invalid-feedback">Το όνομα απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="Student_Surname">Επώνυμο</label>
+                    <input class="form-control w-100" type="text" id="Student_Surname" name="Student_Surname"
+                        placeholder="Επώνυμο Φοιτητή" required minlength="2" maxlength="15"
+                        style="border-radius: 12px;">
+                    <div class="valid-feedback">Σωστό!</div>
+                    <div class="invalid-feedback">Το επώνυμο απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="Import_Year">Χρονιά Εισαγωγής</label>
+                    <input class="form-control w-100" type="date" id="Import_Year" name="Import_Year" required
+                        style="border-radius: 12px;">
+                    <div class="valid-feedback">Σωστό!</div>
+                </div>
+
+
+            </div>
+
+            <!-- divs σε περίπτωση που επιλέξει ρόλο καθηγητή-->
+
+            <div id="teacher">
+
+                <div class="mb-3">
+                    <label class="form-label" for="Teacher_Name">Όνομα</label>
+                    <input class="form-control w-100" type="text" id="Teacher_Name" name="Teacher_Name"
+                        placeholder="Όνομα Διδάσκων" required minlength="2" maxlength="15" style="border-radius: 12px;">
+                    <div class="valid-feedback">Σωστό!</div>
+                    <div class="invalid-feedback">Το όνομα απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="Teacher_Surname">Επώνυμο</label>
+                    <input class="form-control w-100" type="text" id="Teacher_Surname" name="Teacher_Surname"
+                        placeholder="Επώνυμο Διδάσκων" required minlength="2" maxlength="15"
+                        style="border-radius: 12px;">
+                    <div class="valid-feedback">Σωστό!</div>
+                    <div class="invalid-feedback">Το επώνυμο απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="Grade">Βαθμίδα Διδάσκων</label>
+                    <input class="form-control w-100" type="text" id="Grade" name="Grade"
+                        placeholder="π.χ. Αναπληρωτής, Επίκουρος κ.λπ." required minlength="5"
+                        style="border-radius: 12px;">
+                    <div class="valid-feedback">Σωστό!</div>
+                    <div class="invalid-feedback">Η Βαθμίδα απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+                </div>
+            </div>
+
+            <button class="btn btn-success w-100" style="border-radius: 12px;" id="RegisterButton">Εγγραφή</button>
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        //για χρήση των tooltips
+        $(document).ready(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+
+
+        $(function () {
+            $('#student').hide();
+            $('#teacher').hide();
+            $('#student').prop('disabled', true);
+            $('#teacher').prop('disabled', true);
+            $('#Role').change(function () {
+                if ($('#Role').val() == 'University_Student') {
+
+                    //εμφάνιση και απόκρυψη div
+                    $('#student').show();
+                    $('#teacher').hide();
+
+                    ///Καθαρισμός των πεδίων 
+                    $('#AM').val('');
+                    $('#Student_Name').val('');
+                    $('#Student_Name').val('');
+                    $('#Student_Surname').val('');
+                    $('#Import_Year').val('');
+
+                    //default values
+                    $('#Teacher_Name').val('default');
+                    $('#Teacher_Surname').val('default');
+                    $('#Grade').val('default');
+
+
+                }
+                else if ($('#Role').val() == 'DEP_member') {
+
+                    //εμφάνιση και απόκρυψη div
+                    $('#teacher').show();
+                    $('#student').hide();
+
+                    ///Καθαρισμός των πεδίων 
+                    $('#Teacher_Name').val('');
+                    $('#Teacher_Surname').val('');
+                    $('#Grade').val('');
+
+                    //default values
+                    $('#AM').val('1234');
+                    $('#Student_Name').val('default');
+                    $('#Student_Name').val('default');
+                    $('#Student_Surname').val('default');
+                    $('#Import_Year').val('default');
+
+
+
+
+                }
+                else {
+                    //απόκρυψη σε οποιαδήποτε άλλη περίπτωση
+                    $('#student').hide();
+                    $('#teacher').hide();
+
+                }
+            });
+        });
+
+
+
+
+    </script>

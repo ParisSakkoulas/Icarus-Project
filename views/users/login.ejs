@@ -1,0 +1,35 @@
+<% layout("layouts/boilerplate") %>
+
+
+    <h1 class="text-center mb-3" style="color: #2C3333;">Σύνδεση Χρήστη</h1>
+
+    <div class=" card shadow mx-auto border-0" style="border-radius: 8px; height: 90%; width: 35%;">
+
+        <form action="/login" method="POST" novalidate class="validated-form mb-3 mx-auto p-4">
+
+            <div class="mb-3">
+                <label class="form-label" for="Username">Όνομα Χρήστη</label>
+                <input class="form-control w-100" type="text" id="Username" name="Username" required
+                    placeholder="Όνομα χρήστη" style="border-radius: 12px;">
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" for="Password">Κωδικός</label>
+                <input class="form-control w-100" type="password" id="Password" name="Password" required
+                    placeholder="Κωδικός χρήστη" style="border-radius: 12px;">
+            </div>
+
+            <div class="mt-0 text-center"> <a class=" text-decoration-none" href="/register" style="color: #395B64;">
+                    Ξεχάσατε τον
+                    κωδικό σας?</a>
+            </div>
+
+            <button class="mt-4 btn btn-success w-100 border-0" id="LoginButton"
+                style="border-radius: 12px;">Σύνδεση</button>
+
+            <div class="mt-4">Δεν έχετε λογαριασμό? <a class="text-decoration-none" href="/register"
+                    style="color: #395B64;">Δημιουργία Νέου</a>
+            </div>
+
+        </form>
+    </div>

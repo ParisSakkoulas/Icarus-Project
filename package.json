@@ -1,0 +1,34 @@
+{
+  "name": "icarus-project2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bluebird": "^3.7.2",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.6",
+    "ejs-mate": "^3.0.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "joi": "^17.6.0",
+    "jsdom": "^19.0.0",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "mysql-promise": "^5.0.0",
+    "mysql2": "^2.3.3",
+    "mysql2-promise": "^0.1.4",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "sync-sql": "^1.0.2"
+  }
+}

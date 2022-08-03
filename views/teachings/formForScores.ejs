@@ -1,0 +1,84 @@
+<% layout('layouts/boilerplate')%>
+
+    <h1 class="text-center mb-3">Εισαγωγή Βαθμολογιών <%=subject.Name%>
+    </h1>
+
+    <form action="/teachings/addNewScores" method="POST" name="myform" id="myform">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Όνομα</th>
+                    <th scope="col">Επώνυμο</th>
+                    <th scope="col">Α.Μ.</th>
+                    <th scope="col">Βαθμός Θεωρίας</th>
+                    <th scope="col">Βαθμός Εργαστηρίου</th>
+                    <th scope="col">Τελικό Βαθμός</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for(let student of students){%>
+                    <%for(let states of statements) {%>
+
+                        <% if(student.AM===states.AM) {%>
+                            <tr>
+                                <th scope="row">
+                                </th>
+
+                                <td>
+                                    <%= student.Student_Name %>
+
+                                </td>
+
+
+                                <td>
+                                    <%= student.Student_Surname %>
+
+                                </td>
+
+
+                                <td>
+                                    <%= student.AM %>
+
+                                        <input hidden id="studentAM" name="studentAM" value="<%=student.AM%>">
+
+                                </td>
+
+
+                                <td>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="Theory_Grade" name="Theory_Grade"
+                                            value="<%=states.Theory_Grade%>" min="0" max="10">
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="Lab_Grade" name="Lab_Grade"
+                                            value="<%=states.Lab_Grade%>" min="0" max="10">
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="Final_Grade" name="Final_Grade"
+                                            value="<%=states.Final_Grade%>" min="0" max="10">
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                            <% } %>
+                                <% } %>
+                                    <% } %>
+
+
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-success">Εισαγωγή</button>
+        <a class="card-link btn btn-secondary" href="/subjects/<%=subject.Subject_id%>">Πίσω</a>
+    </form>

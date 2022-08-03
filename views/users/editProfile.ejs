@@ -1,0 +1,69 @@
+<% layout("layouts/boilerplate") %>
+
+    <h1 class="text-center">Προφίλ Χρήστη</h1>
+
+    <form action="/profile/<%=user.Id%>?_method=PUT" method="POST" novalidate class="validated-form mb-3">
+
+        <div class="mb-3">
+            <label class="form-label" for="Username">Όνομα Χρήστη</label>
+            <input class="form-control" type="text" id="Username" name="Username" required placeholder="Όνομα χρήστη"
+                minlength="2" maxlength="15" value=<%=user.Username%>>
+            <div class="valid-feedback">Σωστό!</div>
+            <div class="invalid-feedback">Το όνομα χρήστη απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+        </div>
+
+        <% if(user.Role==="University_Student" ) {%>
+            <div class="mb-3">
+                <label class="form-label" for="Student_Name">Όνομα</label>
+                <input class="form-control" type="text" id="Student_Name" name="Student_Name"
+                    placeholder="Όνομα Φοιτητή" required minlength="2" maxlength="15" value=<%=student.Student_Name%> >
+                <div class="valid-feedback">Σωστό!</div>
+                <div class="invalid-feedback">Το όνομα απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Student_Surname">Επώνυμο</label>
+                <input class="form-control" type="text" id="Student_Surname" name="Student_Surname"
+                    placeholder="Επώνυμο Φοιτητή" required minlength="2" maxlength="15"
+                    value=<%=student.Student_Surname%>>
+                <div class="valid-feedback">Σωστό!</div>
+                <div class="invalid-feedback">Το επώνυμο απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="Import_Year">Χρονιά Εισαγωγής</label>
+                <input class="form-control" type="date" id="Import_Year" name="Import_Year" required
+                    value=<%=student.Import_Year%>>
+                <div class="valid-feedback">Σωστό!</div>
+            </div>
+            <% } %>
+
+                <% if(user.Role==="DEP_member" ) {%>
+                    <div class="mb-3">
+                        <label class="form-label" for="Teacher_Name">Όνομα</label>
+                        <input class="form-control" type="text" id="Teacher_Name" name="Teacher_Name"
+                            placeholder="Όνομα Φοιτητή" required minlength="2" maxlength="15"
+                            value=<%=teacher.Teacher_Name%> >
+                        <div class="valid-feedback">Σωστό!</div>
+                        <div class="invalid-feedback">Το όνομα απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="Teacher_Surname">Επώνυμο</label>
+                        <input class="form-control" type="text" id="Teacher_Surname" name="Teacher_Surname"
+                            placeholder="Επώνυμο Φοιτητή" required minlength="2" maxlength="15"
+                            value=<%=teacher.Teacher_Surname%>>
+                        <div class="valid-feedback">Σωστό!</div>
+                        <div class="invalid-feedback">Το επώνυμο απαιτείται να έχει από 2 έως 15 χαρακτήρες</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="Grade">Βαθμίδα</label>
+                        <input class="form-control" type="text" id="Grade" name="Grade" placeholder="Βαθμίδα" required
+                            minlength="2" maxlength="15" value=<%=teacher.Grade%>>
+                        <div class="valid-feedback">Σωστό!</div>
+                    </div>
+                    <% } %>
+
+                        <button class="btn btn-success">Ανανέωση</button>
+                        <a class="card-link btn btn-secondary" href="/profile">Πίσω</a>
+
+    </form>

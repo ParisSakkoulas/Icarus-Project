@@ -1,0 +1,259 @@
+<% layout("layouts/boilerplate") %>
+
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card mb-4 border-0 shadow" style="border-radius: 8px;">
+                <div class="card-body text-center">
+                    <img src="https://www.neurosurgery.org.gr/wp-content/uploads/2022/04/default-avatar.jpg"
+                        alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+
+                    <h5 class="my-3">
+                        <%=user.Username%>
+                    </h5>
+                    <% if(user.Role==="University_Student" ) {%>
+                        <p class="text-muted ">Φοιτητής</p>
+                        <% }%>
+                            <% if(user.Role==="DEP_member" ) {%>
+                                <p class="text-muted">Καθηγητής</p>
+                                <% }%>
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <a class="card-link btn btn-outline-primary" href="/profile/edit">Επεξεργασία
+                                            Στοιχείων</a>
+
+
+                                        <a class="card-link btn btn-outline-primary" href="/profile/editPassword">Αλλαγή
+                                            Κωδικού</a>
+
+
+                                    </div>
+                </div>
+            </div>
+
+            <% if(user.Role==="University_Student" ) {%>
+                <div class="card mb-4 border-0 shadow" style="border-radius: 8px;">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fas fa-globe fa-lg text-warning"></i>
+                                <p class="mb-0">Μέσος Όρος</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                <p class="mb-0">Μεγαλύτερη Βαθμολογία</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                <p class="mb-0">Δηλωμένα μαθήματα</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                <p class="mb-0">Μαθήματα που απομένουν</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                <p class="mb-0">Περασμένα</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <%} %>
+        </div>
+        <div class="col-lg-8">
+            <div class="card mb-4 border-0 shadow" style="border-radius: 8px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Όνομα χρήστη</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">
+                                <%=user.Username%>
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Αριθμός χρήστη</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">
+                                <%=user.Id%>
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Ρόλος χρήστη</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <% if(user.Role==="University_Student" ) {%>
+                                <p class="text-muted mb-0">
+                                    Φοιτητής
+                                </p>
+                                <% } %>
+
+                                    <% if (user.Role==="DEP_member" ) {%>
+                                        <p class="text-muted mb-0">
+                                            Καθηγητής
+                                        </p>
+                                        <% } %>
+
+                                            <% if (user.Role==="Admin" ) {%>
+                                                <p class="text-muted mb-0">
+                                                    Διαχειριστής
+                                                </p>
+                                                <% } %>
+
+                        </div>
+                    </div>
+                    <hr>
+
+                    <% if(user.Role==="DEP_member" ) {%>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Αριθμός Μέλους</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    <%=teacher.Member_id%>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Όνομα Καθηγητή</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    <%=teacher.Teacher_Name%>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Επώνυμο Καθηγητή</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    <%=teacher.Teacher_Surname%>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Βαθμίδα</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    <%=teacher.Grade%>
+                                </p>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+                            <% if(user.Role==="University_Student" ) {%>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Αριθμός Μητρώου</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <%=student.AM%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Όνομα Φοιτητή</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <%=student.Student_Name%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Επώνυμο Φοιτητή</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <%=student.Student_Surname%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Χρονιά εισαγωγής</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">
+                                            <%=student.Import_Year%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <% } %>
+
+                </div>
+            </div>
+
+            <% if(user.Role==='DEP_member' ) {%>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0 border-0 shadow" style="border-radius: 8px;">
+                            <div class="card-body">
+                                <p class="mb-4"> Μαθήματα διδασκαλίας
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0 border-0 shadow" style="border-radius: 8px;">
+                            <div class="card-body">
+                                <p class="mb-4">Βαθμολογίες μαθημάτων
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+                    <% if(user.Role==='University_Student' ) {%>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card mb-4 mb-md-0 border-0 shadow" style="border-radius: 8px;">
+                                    <div class="card-body">
+                                        <p class="mb-4"> <a href="/subjectsStatement"
+                                                class="text-decoration-none text-dark">Δηλωμένα
+                                                μαθήματα</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4 mb-md-0 border-0 shadow" style="border-radius: 8px;">
+                                    <div class="card-body">
+                                        <p class="mb-4">Βαθμολογίες μαθημάτων
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+        </div>
+    </div>
+    </div>
+    </section>

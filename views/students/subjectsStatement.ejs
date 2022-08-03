@@ -1,0 +1,67 @@
+<% layout("layouts/boilerplate") %>
+
+    <div class="text-center mb-3">
+        <h1>Δηλωμένα μαθήματα</h1>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Κωδικός</th>
+                <th scope="col">Τίτλος</th>
+                <th scope="col">Εξάμηνο</th>
+                <th scope="col">Βαθμός Θεωρίας</th>
+                <th scope="col">Βαθμός Εργαστηρίου</th>
+                <th scope="col">Συνολικός Βαθμός</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let state of states){ %>
+
+                <% for(let sub of subject){%>
+                    <% for(let teach of teachings){ %>
+
+                        <% if(state.Teaching_id===teach.Teaching_id && teach.Subject_id===sub.Subject_id) {%>
+
+                            <tr>
+                                <th scope="row">
+                                </th>
+
+                                <td>
+                                    <%=sub.Subject_id%>
+                                </td>
+                                <td>
+                                    <%=sub.Name%>
+                                </td>
+                                <td>
+                                    <%=teach.Semester%>
+                                </td>
+
+                                <td>
+                                    <%=state.Theory_Grade%>
+
+                                </td>
+                                <td>
+                                    <%=state.Lab_Grade%>
+
+                                </td>
+                                <td>
+                                    <%=state.Final_Grade%>
+
+                                </td>
+                            </tr>
+                            <% } %>
+                                <% } %>
+                                    <% } %>
+                                        <% } %>
+        </tbody>
+    </table>
+
+
+    <% if(currentStudent && (currentStudent.StatementStatus===null || currentStudent.StatementStatus==="partially" ))
+        {%>
+        <a class="card-link btn btn-info" href="getEditStatementForm">Τροποποίηση Δήλωσης</a>
+        <a class="card-link btn btn-success" href="/statemenFinalization">Οριστική υποβολή</a>
+        <a class="card-link btn btn-secondary" href="/subjects">Πίσω</a>
+        <% } %>
